@@ -11,11 +11,6 @@ class ChangeRecord : Fragment()
 {
     lateinit var binding: FragmentChangeRecordBinding
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

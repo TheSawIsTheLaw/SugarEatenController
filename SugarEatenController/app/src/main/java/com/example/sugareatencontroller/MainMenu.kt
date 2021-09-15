@@ -12,15 +12,10 @@ class MainMenu : Fragment()
 {
     lateinit var binding: FragmentMainMenuBinding
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
+    ): View
     {
         binding = FragmentMainMenuBinding.inflate(layoutInflater)
 

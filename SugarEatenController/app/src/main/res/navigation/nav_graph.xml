@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/mainMenu">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.sugareatencontroller.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/changeRecord"
+        android:name="com.example.sugareatencontroller.ChangeRecord"
+        android:label="fragment_change_record"
+        tools:layout="@layout/fragment_change_record" >
+        <action
+            android:id="@+id/action_changeRecord_to_mainMenu"
+            app:destination="@id/mainMenu" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.example.sugareatencontroller.MainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_changeRecord"
+            app:destination="@id/changeRecord" />
+    </fragment>
 </navigation>

@@ -76,6 +76,15 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:id="@+id/newDayButton"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text=" New day!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prevDayInfo" />
+
+    <Button
         android:id="@+id/EditCurrentDayButton"
         android:layout_width="350dp"
         android:layout_height="50dp"

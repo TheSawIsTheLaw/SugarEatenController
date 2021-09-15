@@ -1,11 +1,9 @@
 <resources>
     <string name="app_name">SugarEatenController</string>
     <string name="sugar_norm">Sugar norm:\nYour sugar norm is not defined</string>
-    <string name="previous_day">Previous day: undefined</string>
+    <string name="previous_day">Previous day:</string>
     <string name="new_record_label">New record:</string>
     <string name="add_new_record_button">Add new record</string>
     <string name="edit_record_in_current_day_button">Edit record in current day</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="change_chosen_record">Change chosen record</string>
 </resources>

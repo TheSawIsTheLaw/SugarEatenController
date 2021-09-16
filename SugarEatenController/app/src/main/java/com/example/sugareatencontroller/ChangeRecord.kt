@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +13,6 @@ import android.widget.RadioButton
 import androidx.annotation.RequiresApi
 import com.example.sugareatencontroller.databinding.FragmentChangeRecordBinding
 import com.google.gson.Gson
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 class ChangeRecord : Fragment()
 {

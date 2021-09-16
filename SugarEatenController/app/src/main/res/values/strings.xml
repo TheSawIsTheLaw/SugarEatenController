@@ -5,6 +5,8 @@
     <string name="new_record_label">New record:</string>
     <string name="add_new_record_button">Add new record</string>
     <string name="edit_record_in_current_day_button">Edit record in current day</string>
-    <string name="change_chosen_record">Change chosen record</string>
+    <string name="edit_chosen_record">Edit chosen record</string>
     <string name="current_amount_of_eaten">Current amount of eaten:</string>
+    <string name="amount">Amount</string>
+    <string name="at_time">At time</string>
 </resources>

@@ -17,12 +17,16 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 class MainMenu : Fragment()
 {
     lateinit var binding: FragmentMainMenuBinding
     lateinit var preferences: SharedPreferences
+    lateinit var formatter: DateTimeFormatter
 
     @SuppressLint("SetTextI18n")
     fun preparePrevDayLabel()
@@ -35,7 +39,7 @@ class MainMenu : Fragment()
     fun prepareCurrentAmountOfEatenLabel()
     {
         val curAmount = preferences.getFloat("currentAmountOfEaten", 0.0f)
-        binding.todaysResultLabel.text = "${getString(R.string.current_amount_of_eaten)} $curAmount"
+        binding.todaysResultLabel.text = "${getString(R.string.current_amount_of_eaten)} ${String.format("%.3f", curAmount)}"
     }
 
     fun setNewDay()
@@ -69,7 +73,7 @@ class MainMenu : Fragment()
         var valuesListJson = preferences.getString("valuesList", "")
         var timesListJson = preferences.getString("timesList", "")
         var valuesList: MutableList<Float> = mutableListOf()
-        var timesList: MutableList<Instant> = mutableListOf()
+        var timesList: MutableList<String> = mutableListOf()
         if (valuesListJson != "")
         {
             valuesList = Gson().fromJson(valuesListJson, valuesList.javaClass)
@@ -77,7 +81,7 @@ class MainMenu : Fragment()
         }
 
         valuesList.add(0, sugarAmount)
-        timesList.add(0, Instant.now())
+        timesList.add(0, formatter.format(Instant.now()))
 
         valuesListJson = Gson().toJson(valuesList)
         timesListJson = Gson().toJson(timesList)
@@ -98,6 +102,7 @@ class MainMenu : Fragment()
         {
             addToCurrentSugarList(newRec)
             Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
+            binding.newRecordValueInput.text.clear()
         }
         else
         {
@@ -116,6 +121,9 @@ class MainMenu : Fragment()
         binding = FragmentMainMenuBinding.inflate(layoutInflater)
 
         preferences = requireContext().getSharedPreferences("SugarInfo", Context.MODE_PRIVATE)
+
+        formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.UK).withZone(
+            ZoneId.systemDefault())
 
         preparePrevDayLabel()
         prepareCurrentAmountOfEatenLabel()

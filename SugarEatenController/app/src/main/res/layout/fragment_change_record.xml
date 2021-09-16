@@ -23,7 +23,7 @@
         android:id="@+id/changeRecordButton"
         android:layout_width="390dp"
         android:layout_height="87dp"
-        android:text="@string/change_chosen_record"
+        android:text="@string/edit_chosen_record"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

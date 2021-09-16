@@ -55,8 +55,11 @@ class MainMenu : Fragment()
         Toast.makeText(requireContext(), "Wow, new day!", Toast.LENGTH_SHORT).show()
     }
 
-    fun updateCurrentAmountOfEatenPref(sugarList: MutableList<Float>)
+    fun updateCurrentAmountOfEatenPref()
     {
+        val sugarList = Gson().fromJson(preferences.getString("valuesList", ""), mutableListOf<Float>().javaClass)
+            ?: return
+
         var eaten = 0.0f
         sugarList.forEach { eaten += it }
 
@@ -88,7 +91,7 @@ class MainMenu : Fragment()
         editor.putString("timesList", timesListJson)
         editor.apply()
 
-        updateCurrentAmountOfEatenPref(valuesList)
+        updateCurrentAmountOfEatenPref()
         prepareCurrentAmountOfEatenLabel()
     }
 
@@ -107,7 +110,6 @@ class MainMenu : Fragment()
             Toast.makeText(requireContext(), "Invalid input, please, try again", Toast.LENGTH_LONG)
                 .show()
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -140,5 +142,12 @@ class MainMenu : Fragment()
         }
 
         return binding.root
+    }
+
+    override fun onResume()
+    {
+        updateCurrentAmountOfEatenPref()
+        prepareCurrentAmountOfEatenLabel()
+        super.onResume()
     }
 }

@@ -8,8 +8,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="411dp"
-        android:layout_height="636dp"
+        android:layout_width="414dp"
+        android:layout_height="530dp"
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="right"
@@ -23,9 +23,23 @@
         android:id="@+id/changeRecordButton"
         android:layout_width="390dp"
         android:layout_height="87dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/edit_chosen_record"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/newValueForRecordInput"
+        android:layout_width="375dp"
+        android:layout_height="80dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/changeRecordButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

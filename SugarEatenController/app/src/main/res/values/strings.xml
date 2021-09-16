@@ -9,4 +9,5 @@
     <string name="current_amount_of_eaten">Current amount of eaten:</string>
     <string name="amount">Amount</string>
     <string name="at_time">At time</string>
+    <string name="enter_new_value">Enter new value</string>
 </resources>

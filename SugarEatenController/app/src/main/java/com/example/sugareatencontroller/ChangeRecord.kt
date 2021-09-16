@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import com.example.sugareatencontroller.databinding.FragmentChangeRecordBinding
 import com.google.gson.Gson
@@ -23,10 +25,18 @@ class ChangeRecord : Fragment()
     @SuppressLint("SetTextI18n")
     fun fullTheListOfRecords()
     {
+        binding.radioGroup.removeAllViews()
+
         val sugarRecordsList =
-            Gson().fromJson(preferences.getString("valuesList", ""), mutableListOf<Float>().javaClass)
+            Gson().fromJson(
+                preferences.getString("valuesList", ""),
+                mutableListOf<Float>().javaClass
+            )
         val timeRecordsList =
-            Gson().fromJson(preferences.getString("timesList", ""), mutableListOf<String>().javaClass)
+            Gson().fromJson(
+                preferences.getString("timesList", ""),
+                mutableListOf<String>().javaClass
+            )
 
         if (sugarRecordsList == null || timeRecordsList == null)
             return
@@ -36,10 +46,39 @@ class ChangeRecord : Fragment()
             val newButton = RadioButton(requireContext())
             newButton.text =
                 "${getString(R.string.amount)}: ${sugarRecordsList[i]}; ${getString(R.string.at_time)}: ${timeRecordsList[i]}"
+            newButton.id = i + 1 // To save the tradition
             binding.radioGroup.addView(newButton)
         }
 
         binding.radioGroup.check(1)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun changeChosenRecord()
+    {
+        val newValueInRecord = binding.newValueForRecordInput.text.toString().toFloatOrNull()
+
+        // Yep, there is no need to check float using 1e-5
+        if (newValueInRecord == null || newValueInRecord < 0)
+        {
+            Toast.makeText(requireContext(), "Invalid value", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val editIndex = binding.radioGroup.checkedRadioButtonId - 1
+
+        val listOfValues = Gson().fromJson(
+            preferences.getString("valuesList", ""),
+            mutableListOf<Float>().javaClass
+        )
+
+        listOfValues[editIndex] = newValueInRecord
+        val editor = preferences.edit()
+        editor.putString("valuesList", Gson().toJson(listOfValues))
+        editor.apply()
+
+        fullTheListOfRecords()
+        Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_SHORT).show()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -54,7 +93,9 @@ class ChangeRecord : Fragment()
 
         fullTheListOfRecords()
 
-        binding.changeRecordButton
+        binding.changeRecordButton.setOnClickListener {
+            changeChosenRecord()
+        }
 
         return binding.root
     }

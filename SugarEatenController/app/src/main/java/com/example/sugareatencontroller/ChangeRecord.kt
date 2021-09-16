@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import com.example.sugareatencontroller.databinding.FragmentChangeRecordBinding
 import com.google.gson.Gson

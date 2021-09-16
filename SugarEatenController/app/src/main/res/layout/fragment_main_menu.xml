@@ -8,8 +8,9 @@
 
     <TextView
         android:id="@+id/sugarNorm"
-        android:layout_width="194dp"
-        android:layout_height="106dp"
+        android:layout_width="347dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/sugar_norm"
         android:textAlignment="center"
@@ -17,7 +18,7 @@
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
